@@ -11,4 +11,8 @@ public interface UserService {
     UserResponseDto findByUserId(long id);
 
     UserResponseDto deleteUserById(long id) throws Exception;
+
+    LoginResponseDto login(LoginRequestDto request);
+
+    LogoutResponseDto logout(LogoutRequestDto logoutRequestDto);
 }

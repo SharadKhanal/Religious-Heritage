@@ -2,7 +2,7 @@ package com.khanalsharad.religiousheritageservice.user;
 
 import org.springframework.util.ObjectUtils;
 import org.springframework.web.bind.annotation.*;
-
+@CrossOrigin("*")
 @RestController
 @RequestMapping("religious-heritage/user")
 public class UserController {
@@ -38,5 +38,14 @@ public class UserController {
     @DeleteMapping("/delete/{id}")
     public UserResponseDto deleteUser(@PathVariable("id") long id) throws Exception{
         return userService.deleteUserById(id);
+    }
+    @PostMapping("/login")
+    public LoginResponseDto login(@RequestBody LoginRequestDto request){
+        return userService.login(request);
+    }
+
+    @PostMapping("/logout")
+    public LogoutResponseDto logout(@RequestBody LogoutRequestDto logoutRequestDto){
+        return userService.logout(logoutRequestDto);
     }
 }

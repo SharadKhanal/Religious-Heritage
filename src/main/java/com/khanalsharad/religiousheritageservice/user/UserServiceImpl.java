@@ -14,7 +14,7 @@ public class UserServiceImpl implements UserService{
     @Override
     public UserResponseDto saveUser(UserDto userDto) {
         User user =new User();
-        user.setName(userDto.getName());
+        user.setUserName(userDto.getUserName());
         user.setAddress(userDto.getAddress());
         user.setPhoneNumber(userDto.getPhoneNumber());
         user.setEmail(userDto.getEmail());
@@ -26,7 +26,7 @@ public class UserServiceImpl implements UserService{
     public UserResponseDto getUserResponse(User user){
         UserResponseDto response = new UserResponseDto();
         response.setId(user.getId());
-        response.setName(user.getName());
+        response.setUserName(user.getUserName());
         response.setAddress(user.getAddress());
         response.setPhoneNumber(user.getPhoneNumber());
         response.setEmail(user.getEmail());
@@ -54,7 +54,7 @@ public class UserServiceImpl implements UserService{
         Optional<User>optionalUser= userRepository.findById(id);
         if(optionalUser.isPresent()){
             User user1=optionalUser.get();
-            user1.setName(user.getName());
+            user1.setUserName(user.getUserName());
             user1.setAddress(user.getAddress());
             user1.setPhoneNumber(user.getPhoneNumber());
             user1.setEmail(user.getEmail());
@@ -89,6 +89,44 @@ public class UserServiceImpl implements UserService{
             throw new Exception ("oops user cant be deleted!!!");
         }
         return  null;
+    }
+
+    @Override
+    public LoginResponseDto login(LoginRequestDto request) {
+        LoginResponseDto response = new LoginResponseDto();
+    User user = userRepository.findByEmail(request.getEmail());
+
+    if(user == null){
+        throw new RuntimeException("User not found!!!");
+    }
+
+    boolean checkpswd = user.getPassword().equals(request.getPassword());
+
+    if(!checkpswd)
+        throw new RuntimeException("Password does not match!!");
+
+
+
+    user.setLoggedIn(true);
+        userRepository.save(user);
+
+        response.setUserId(user.getId());
+        response.setEmail(user.getEmail());
+        return response;
+    }
+
+    @Override
+    public LogoutResponseDto logout(LogoutRequestDto logoutRequestDto) {
+        User user = userRepository.findByEmail(logoutRequestDto.getEmail());
+
+        LogoutResponseDto response= new LogoutResponseDto();
+
+        if(user ==null)
+           response.setMessage("User do not exist!!!");
+
+        user.setLoggedIn(false);
+        userRepository.save(user);
+        return response;
     }
 
 

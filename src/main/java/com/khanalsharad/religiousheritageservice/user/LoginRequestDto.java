@@ -3,10 +3,7 @@ package com.khanalsharad.religiousheritageservice.user;
 import lombok.Data;
 
 @Data
-public class UserDto {
-    private String userName;
-    private String address;
+public class LoginRequestDto {
     private String email;
-    private String phoneNumber;
     private String password;
 }

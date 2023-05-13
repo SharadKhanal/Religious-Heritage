@@ -10,9 +10,10 @@ public class User {
  @Id
  @GeneratedValue(strategy = GenerationType.IDENTITY)
  private long id;
- private String name;
+ private String userName;
  private String address;
  private String email;
  private String phoneNumber;
  private String password;
+  private boolean loggedIn;
 }
