@@ -13,7 +13,7 @@ import java.io.Serializable;
 @NoArgsConstructor
 @MappedSuperclass
 public class BaseEntity<PK extends Serializable> extends AbstractPersistable<PK> {
-    @CreatedDate
-    @Column(name="created_at")
+//    @CreatedDate
+//    @Column(name="created_at")
 
 }
