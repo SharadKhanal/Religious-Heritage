@@ -6,7 +6,7 @@ public interface UserService {
 
     UserResponseListDto getUsers();
 
-    UserResponseDto updateUser(long id, User user);
+    UserResponseDto updateUser(long id, UserDto userDto);
 
     UserResponseDto findByUserId(long id);
 

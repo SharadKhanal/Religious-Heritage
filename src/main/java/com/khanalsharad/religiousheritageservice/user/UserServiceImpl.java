@@ -26,6 +26,7 @@ public class UserServiceImpl implements UserService{
     public UserResponseDto getUserResponse(User user){
         UserResponseDto response = new UserResponseDto();
         response.setId(user.getId());
+        System.out.println("Sharad Khanal"+user.getLastModifiedAt());
         response.setUserName(user.getUserName());
         response.setAddress(user.getAddress());
         response.setPhoneNumber(user.getPhoneNumber());
@@ -50,14 +51,14 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    public UserResponseDto updateUser(long id, User user) {
+    public UserResponseDto updateUser(long id, UserDto userDto) {
         Optional<User>optionalUser= userRepository.findById(id);
         if(optionalUser.isPresent()){
             User user1=optionalUser.get();
-            user1.setUserName(user.getUserName());
-            user1.setAddress(user.getAddress());
-            user1.setPhoneNumber(user.getPhoneNumber());
-            user1.setEmail(user.getEmail());
+            user1.setUserName(userDto.getUserName());
+            user1.setAddress(userDto.getAddress());
+            user1.setPhoneNumber(userDto.getPhoneNumber());
+            user1.setEmail(userDto.getEmail());
 
             User savedUser= userRepository.save(user1);
             return getUserResponse(savedUser);

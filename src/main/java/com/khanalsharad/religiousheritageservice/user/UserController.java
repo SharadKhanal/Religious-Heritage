@@ -31,8 +31,8 @@ public class UserController {
         return userService.findByUserId(id);
     }
     @PutMapping("/{id}")
-    public UserResponseDto updateUser(@PathVariable("id") long id, @RequestBody User user){
-    return userService.updateUser(id,user);
+    public UserResponseDto updateUser(@PathVariable("id") long id, @RequestBody UserDto userDto){
+    return userService.updateUser(id,userDto);
     }
 
     @DeleteMapping("/delete/{id}")
