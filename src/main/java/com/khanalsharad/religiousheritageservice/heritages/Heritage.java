@@ -16,7 +16,6 @@ public class Heritage  {
     private String districtName;
     private String municipality;
 //    private String localMuniciplaiyty;
-    @Lob
     private String description;
     private String image;
 

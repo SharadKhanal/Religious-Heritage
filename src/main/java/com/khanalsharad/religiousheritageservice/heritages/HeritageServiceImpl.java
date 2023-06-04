@@ -84,4 +84,16 @@ public class HeritageServiceImpl implements HeritageService {
         return null;
     }
 
+    @Override
+    public Heritage deleteHeritage(long id) {
+        Optional<Heritage> optionalHeritage =heritageRepository.findById(id);
+        if(optionalHeritage.isPresent()){
+            heritageRepository.deleteById(id);
+        }
+        else{
+            System.out.println("Heritage not found");
+        }
+        return null;
+    }
+
 }

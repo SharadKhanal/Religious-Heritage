@@ -16,5 +16,6 @@ public class User extends BaseEntity<Long>{
  private String email;
  private String phoneNumber;
  private String password;
+ private String role;
   private boolean loggedIn;
 }

@@ -11,4 +11,6 @@ public interface HeritageService {
     HeritageResponseListDto getHeritages();
 
     Heritage updateHeritage(long id, HeritageDto heritageDto);
+
+    Heritage deleteHeritage(long id);
 }

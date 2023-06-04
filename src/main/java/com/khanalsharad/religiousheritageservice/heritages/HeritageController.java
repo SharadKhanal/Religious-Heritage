@@ -31,4 +31,9 @@ public class HeritageController {
         return heritageService.updateHeritage(id,heritageDto);
     }
 
+    @DeleteMapping("/{id}")
+    public Heritage deleteHeritage(@PathVariable("id") long id){
+       return heritageService.deleteHeritage(id);
+    }
+
 }
